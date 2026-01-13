@@ -2,7 +2,8 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://billing_user:billing_pass@localhost:3306/billing")
+from app.core.config import DATABASE_URL
+
 
 engine = create_engine(
     DATABASE_URL,
