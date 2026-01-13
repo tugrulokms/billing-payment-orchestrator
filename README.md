@@ -120,10 +120,10 @@ The integration points for these concerns are clearly defined.
 ## How to run
     - make up
     - make migrate
+    - Optionally, copy `.env.example` to `.env` to customize environment variables.
 
 API will be available at:
     - http://localhost:8000
-    - Optionally, copy `.env.example` to `.env` to customize environment variables.
 
 
 Swagger UI:
