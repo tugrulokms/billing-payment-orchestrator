@@ -122,7 +122,9 @@ The integration points for these concerns are clearly defined.
     - make migrate
 
 API will be available at:
-    http://localhost:8000
+    - http://localhost:8000
+    - Optionally, copy `.env.example` to `.env` to customize environment variables.
+
 
 Swagger UI:
     http://localhost:8000/docs
