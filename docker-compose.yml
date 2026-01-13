@@ -1,0 +1,31 @@
+services:
+  mariadb:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: billing
+      MARIADB_USER: billing_user
+      MARIADB_PASSWORD: billing_pass
+      MARIADB_ROOT_PASSWORD: root_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-uroot", "-proot_pass"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  api:
+    build: .
+    environment:
+      DATABASE_URL: mysql+pymysql://billing_user:billing_pass@mariadb:3306/billing
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+volumes:
+  mariadb_data:
